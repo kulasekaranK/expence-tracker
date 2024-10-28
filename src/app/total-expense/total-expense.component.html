@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+    
+    <div class="card mt-4 bg-info shadow col-10 col-md-5 col-lg-3 m-3  ">
+        <div class="card-body">
+            <h3>{{ getCurrentMonthExpenses()| currency:'INR'}}</h3>
+            <p>Current Month Expenses</p>
+        </div>
+    </div>
+    <div class="card mt-4 bg-danger text-light shadow col-10 col-md-5 col-lg-3 m-3  ">
+        <div class="card-body">
+            <h3>{{ getCurrentYearExpenses()| currency:'INR'}}</h3>
+            <p>Current Year Expenses</p>
+        </div>
+    </div>
+    <div class="card mt-4 bg-warning shadow col-10 col-md-11 col-lg-5 m-3  ">
+        <div class="card-body fw-bold d-flex justify-content-center align-items-center flex-column">
+            <h2>{{ gettotalExpenses()| currency:'INR'}}</h2>
+            <p>Total Expenses</p>
+        </div>
+    </div>
+    </div>
+</div>
+

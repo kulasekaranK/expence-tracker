@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="card mt-3 shadow-sm">
+    <div class="card-body">
+      <h3>Information</h3>
+      <button
+        class="btn btn-success btn-sm me-3 mb-3"
+        data-bs-toggle="modal"
+        data-bs-target="#mbudget"
+      >
+        Set Monthly Budget
+      </button>
+      <button
+        class="btn btn-success btn-sm mb-3"
+        data-bs-toggle="modal"
+        data-bs-target="#ybudget"
+      >
+        Set Yearly Budget
+      </button>
+      <div class="modal" id="mbudget">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Add Monthly Budget</h3>
+              <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <form (ngSubmit)="mbudget()">
+                <div class="form-group">
+                  <label for="mbudget">Enter Monthly Budget:</label>
+                  <input
+                    class="form-control mt-2"
+                    type="number"
+                    name="monthlyBudget"
+                    id="mbudget"
+                    placeholder="Enter amount"
+                    [(ngModel)]="monthBudget"
+                  />
+                </div>
+                <div class="modal-footer">
+                    @if(displaymonthBudget>0){
+                        <button class="btn btn-primary rounded-pill" type="submit" data-bs-dismiss="modal">Update</button>
+                    }
+                    @else{
+                    <button class="btn btn-primary rounded-pill" type="submit" data-bs-dismiss="modal">Submit</button>
+                    }  
+                </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="ybudget">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Add Yearly Budget</h3>
+              <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <form (ngSubmit)="ybudget()">
+                <div class="form-group">
+                  <label for="ybudget">Enter Yearly Budget:</label>
+                  <input
+                    class="form-control mt-2"
+                    type="number"
+                    name="yearlyBudget"
+                    id="ybudget"
+                    placeholder="Enter amount"
+                    [(ngModel)]="yearBudget"
+                  />
+                </div>
+                <div class="modal-footer">
+                   @if(displaymonthBudget>0){
+                        <button class="btn btn-primary rounded-pill" type="submit" data-bs-dismiss="modal">Update</button>
+                    }
+                    @else{
+                    <button class="btn btn-primary rounded-pill" type="submit" data-bs-dismiss="modal">Submit</button>
+                    }  
+                  </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="m-3 card card-body col-11 col-md-9 col-lg-7">
+        <div class="alert alert-warning" *ngIf="alert">
+          You are crashing the monthly budget !
+        </div>
+        <p>Budget For Month: <strong>{{displaymonthBudget|currency:'INR'}}</strong></p>
+        <div class="alert alert-warning" *ngIf="yalert">
+          You are crashing the Yearly budget !
+        </div>
+        <p>Budget for Year: <strong> {{ displayyearBudget|currency:'INR'}}</strong></p>
+      </div>
+    </div>
+  </div>
+</div>

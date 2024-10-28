@@ -1,0 +1,65 @@
+<div class="container ">
+  <div class="dropdown">
+    <button class="dropdown-toggle btn btn-warning mt-4" data-bs-toggle="dropdown" data-bs-target="#filter">Filter by Categorys</button>
+    <ul class="dropdown-menu" id="filter">
+      <li><a href="#" class="dropdown-item" (click)="filtercategory('All')">All</a></li>
+      <hr class="dropdown-divider">
+      <li *ngFor="let categorys of category">
+        <a href="#" class="dropdown-item" (click)="filtercategory(categorys)"> {{categorys}}</a>
+      </li>
+    </ul>
+  </div>
+  @if(alert){
+  <div class="alert alert-danger mt-4 d-flex justify-content-between">
+    Expense deleted successfully.
+    <button class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+}
+<div class=" overflow-auto" style="height: 320px;">
+  <table
+    *ngIf="filterExpenses && filterExpenses.length > 0; else elseblock"
+    class="table table-striped mt-4 border border-dark-subtle "
+  >
+    <thead class="table-dark">
+      <tr>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of filterExpenses ; let i = index;">
+        <td>{{ expense.description }}</td>
+        <td>{{ expense.category }}</td>
+        <td>{{ expense.amount | currency : "INR" }}</td>
+        <td>{{ expense.date | date }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm rounded-pill" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteModal' + i ">Delete</button>
+          <div class="modal" [attr.id]="'deleteModal' + i" >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title">Delete expense ?</h3>
+                </div>
+                <div class="modal-body">
+                  <p>This Will Delete: "{{expense.description }}" </p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button class="btn btn-danger " (click)="delete(i)" data-bs-dismiss="modal">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  
+  <ng-template #elseblock>
+    <p class="text-center m-4">No expenses available."</p>
+  </ng-template>
+</div>

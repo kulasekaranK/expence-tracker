@@ -1,0 +1,11 @@
+<div class="container border rounded mt-2 shadow-sm bg-secondary-subtle">
+    <p class="display-1 text-center mt-3">Expense Tracker</p>
+    <div class="row">
+<app-total-expense [reciveExpenses]="expnses"></app-total-expense>
+
+<app-expense-form (addedexpenses)="addExpense($event)" class="col-12 col-md-12 col-lg-7"></app-expense-form>
+<app-expense-notification class="col-12 col-md-12 col-lg-5"></app-expense-notification>
+
+<app-expense-list [reciveExpenses]="expnses" ></app-expense-list>
+</div>
+</div>
